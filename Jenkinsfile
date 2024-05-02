@@ -27,7 +27,7 @@
         stage('Test') {
             steps {
                 script {
-                    def url = 'https://test-env-jenkins-udemy-ann.s3.ap-northeast-1.amazonaws.com/index2.html'
+                    def url = 'https://test-env-jenkins-udemy-ann.s3.ap-northeast-1.amazonaws.com/index.html'
                     def response = sh(script: "curl -s -o /dev/null -w '%{http_code}' '$url'", returnStdout: true)
 
                     if (response == '200') {
