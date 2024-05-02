@@ -42,6 +42,13 @@
         stage('Release') {
             steps {
                 echo 'Releasing'
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: 'MyAWS',
+                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
+                        sh(script: 'aws s3 cp s3://test-env-jenkins-udemy-ann/index.html s3://prod-env-jenkins-udemy-ann/')
+                }
             }
         }
     }
